@@ -1,0 +1,35 @@
+Minimum Requirements
+Having a GPU is not necessary, but will speed training time.
+Prediction time is arounf 14 sec 
+
+Software Requirements
+To run this code, you need to have the following libraries installed:
+
+python3
+tensorflow >= 2.0
+matplotlib
+nibabel
+pydicom
+numpy
+scikit-image
+h5py < 3.0.0
+
+
+Usage
+
+python3 MoCIDet.py -data_path path/to/folder/containing/volumes -data_type 'image_type' -save_file 'name_to_save_predictions'
+
+arguments: 
+    data_path is the path to the directory where the acquisitions are
+    data_type is the acquisition type:
+                nifti
+                dicom - volumetric one dicom file
+                multi-dicom - volumetric multiple dicom files
+                dicom-2D - multiple 2D dicom files 
+    save_file is the txt file to save the motion-presence probabilities.
+
+To display the partial results of the predictions use -display
+To save a sample of slice presenting the minimum and the maximum probability use -save_slice
+
+
+
