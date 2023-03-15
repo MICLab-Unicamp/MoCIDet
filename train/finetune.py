@@ -42,7 +42,7 @@ def createKFolds(params,f):
     # The file contains motion-corrupted and motion-free acquisition list
     data = np.loadtxt(params.file,delimiter=',',dtype='U10')
 
-    mskf = MultilabelStratifiedKFold(n_splits=params.nfolds, random_state=0)
+    mskf = MultilabelStratifiedKFold(n_splits=params.nfolds)
 
     X = data[:,0]
     y = data[:,1:]
@@ -150,7 +150,7 @@ def run_CNN(params):
 		h5name_train = [
                      params.input + 'file_motion_corrupted_1', params.input + 'file_motion_free_1', 
                      params.input + 'file_motion_corrupted_2', params.input + 'file_motion_free_2',
-		     params.input + 'file_motion_simulated_1',
+		             params.input + 'file_motion_simulated_1',
                      params.input + 'file_motion_simulated_2',
                         ]
 
@@ -167,7 +167,10 @@ def run_CNN(params):
 		    print('sgd = SGD(lr=1e-2 decay=1e-6, momentum=0.9, nesterov=True)')
 		    sgd = SGD(lr=5e-2, decay=1e-6, momentum=0.9, nesterov=True)
 
-		    model = train_CNN(params,model,15,sgd,gen_train,gen_val,model_name,3,class_weights, ntrain, nval)
+		    model = train_CNN(params, model, 15, sgd, 
+                              gen_train, gen_val,
+                              model_name, 3, 
+                              class_weights, ntrain, nval)
 		    
 		    
 		model_name = params.models+params.architecture+'_2_'+str(f)
@@ -182,7 +185,10 @@ def run_CNN(params):
 		        layer.trainable = True
 		    
 
-		    model = train_CNN(params,model,50,sgd,gen_train,gen_val,model_name,3,class_weights,ntrain, nval)
+		    model = train_CNN(params, model, 50, sgd,
+                              gen_train, gen_val,
+                              model_name, 3,
+                              class_weights, ntrain, nval)
 
             # second Fine-tunning -  training the whole architecture
 		    model_name = params.models+params.architecture+'_3_'+str(f)
@@ -190,7 +196,11 @@ def run_CNN(params):
 		    print('sgd =  SGD(lr=1e-5)')
 		    sgd = SGD(lr=1e-5, decay=1e-5, momentum=0.9, nesterov=True)  
 
-		    model = train_CNN(params,model,30,sgd,gen_train,gen_val,model_name,3,class_weights,ntrain, nval)
+		    
+		    model = train_CNN(params, model, 30, sgd,
+                              gen_train, gen_val,
+                              model_name, 3,
+                              class_weights, ntrain, nval)
 
 		else:
 		    print('Model exist',model_name)
@@ -266,7 +276,7 @@ def train_CNN(params,model,nepochs,sgd,gen_train,gen_val,model_name,nfactor,clas
 
     csvlogger = CSVLogger(model_name+'.csv')
 
-    nsamplesperfold = nfactor*nval*(params.nslices-params.nch)*(params.npt*params.ntrans)/(params.batch_size)
+    nsamplesperfold = nfactor*nval*(params.nslices-params.nch)*(params.ntrans)/(params.batch_size)
     print('nval',nval)
     print('samples',nsamplesperfold)
 
