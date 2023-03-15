@@ -10,12 +10,19 @@ Prediction time is around 14 sec
 To run this code, you need to have the following libraries installed:
 
 python3
+
 tensorflow >= 2.0
+
 matplotlib
+
 nibabel
+
 pydicom
+
 numpy
+
 scikit-image
+
 h5py 
 
 The complete software list is reported in requirements.txt
