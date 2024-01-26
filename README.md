@@ -40,95 +40,35 @@ python3 MoCIDet.py -data_path path/to/folder/containing/volumes -data_type 'imag
       save-slice to save a sample of a slice presenting the minimum and the maximum probability
 ```
 
-## Examples:
+## Example using test images from repo:
 
 [1] 
-```bash
-python3.7 MoCIDet.py -data_path test_anon/multi-dicom/NORM210 -data_type 'multi-dicom' -save_file 'test_multi-dicom' -display -save_slice
-test_anon/multi-dicom/NORM210 0.24444444444444444
-Time:  14.42564868927002
 
-[['test_anon/multi-dicom/NORM210' '0.24444444444444444']]
+```bash
+python MoCIDet.py -data_path test_anon/nifti/ -data_type nifti -save_file test_nifti.txt -display -save_slice
 ```
-[2]
-```bash
-python3.7 MoCIDet.py -data_path test_anon/multi-dicom/ -data_type 'multi-dicom' -save_file 'test_multi-dicom2' -display -save_slice
-
-test_anon/multi-dicom/NORM210 0.24444444444444444
-Time:  14.927184820175171
-
-[['test_anon/multi-dicom/NORM210' '0.24444444444444444']]
-```
-
-[3]
-```bash
-python3.7 MoCIDet.py -data_path test_anon/multi-dicom/NORM210 -data_type 'dicom-2D' -save_file 'test_dicom_2D' -display -save_slice
-
-test_anon/multi-dicom/NORM210 0.
-Time:  6.983335971832275
-
-[['test_anon/multi-dicom/NORM210' '0.16666666666666666']]
-```
-
-[4]
-```bash
-python3.7 MoCIDet.py -data_path test_anon/multi-dicom/ -data_type 'dicom-2D' -save_file 'test_dicom_2D2' -display -save_slice
-
-test_anon/multi-dicom/NORM210 0.16666666666666666
-Time:  68.88042497634888
-
-[['test_anon/multi-dicom/NORM210' '0.16666666666666666']]
-```
-
-[5]
-```bash
-python3.7 MoCIDet.py -data_path test_anon/dicom/ -data_type 'dicom' -save_file 'test_dicom' -display -save_slice
-
-test_anon/dicom/133 0.044444444444444446
-Time:  11.524296522140503
-test_anon/dicom/3300 0.9777777777777777
-Time:  12.145656824111938
-
-[['test_anon/dicom/133' '0.044444444444444446']
-['test_anon/dicom/3300' '0.9777777777777777']]
-```
-
-[6]
-
-The same dicom files above were converted to nifti.
-```bash
-python3.7 MoCIDet.py -data_path test_anon/nifti_from_dicom/ -data_type 'nifti' -save_file 'test_nifti_from_dicom' -display -save_slice
-
-test_anon/nifti_from_dicom/133.nii.gz 0.05925925925925926
-Time:  14.275437831878662
-test_anon/nifti_from_dicom/3300.nii 0.9555555555555556
-Time:  14.370188474655151
-test_anon/nifti_from_dicom/3300.nii.gz 0.9555555555555556
-Time:  15.57526183128357
-
-[['test_anon/nifti_from_dicom/133.nii.gz' '0.05925925925925926']
-['test_anon/nifti_from_dicom/3300.nii' '0.9555555555555556']
-['test_anon/nifti_from_dicom/3300.nii.gz' '0.9555555555555556']]
-```
-
-[7]
-```bash
-python3.7 MoCIDet.py -data_path test_anon/nifti/ -data_type 'nifti' -save_file 'test_nifti' -display -save_slice
 
 test_anon/nifti/ABIDE_50002_MRI_MP-RAGE_br_raw_20120830172854796_S164623_I328631.nii 1.0
-Time:  14.558613538742065
+Time:  8.021493673324585
 test_anon/nifti/ABIDE_50003_MRI_MP-RAGE_br_raw_20120830155445855_S164416_I328410.nii 1.0
-Time:  15.803523540496826
+Time:  7.908209323883057
 test_anon/nifti/sub-10159_T1w.nii.gz 1.0
-Time:  14.653321027755737
+Time:  9.28245997428894
 test_anon/nifti/sub-10206_T1w.nii.gz 0.05185185185185185
-Time:  14.778350114822388
+Time:  8.439939022064209
 
 [['test_anon/nifti/ABIDE_50002_MRI_MP-RAGE_br_raw_20120830172854796_S164623_I328631.nii' '1.0']
 ['test_anon/nifti/ABIDE_50003_MRI_MP-RAGE_br_raw_20120830155445855_S164416_I328410.nii' '1.0']
 ['test_anon/nifti/sub-10159_T1w.nii.gz' '1.0']
 ['test_anon/nifti/sub-10206_T1w.nii.gz' '0.05185185185185185']]
-```
+
+
+Slices saved:
+
+![Minimum prediction slice](./output_files/images/min_ABIDE_50002_MRI_MP-RAGE_br_raw_20120830172854796_S164623_I328631.png)
+![Maximum prediction slice](./output_files/images/max_ABIDE_50002_MRI_MP-RAGE_br_raw_20120830172854796_S164623_I328631.png)
+![Minimum prediction slice](./output_files/images/min_ABIDE_50003_MRI_MP-RAGE_br_raw_20120830155445855_S164416_I328410.png)
+![Maximum prediction slice](./output_files/images/max_ABIDE_50003_MRI_MP-RAGE_br_raw_20120830155445855_S164416_I328410.png)
 
 If you find this repository useful, please consider giving a star ⭐ and citation 🦖:
 ```bash

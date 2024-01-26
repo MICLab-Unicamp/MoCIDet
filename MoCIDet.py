@@ -17,18 +17,20 @@ import time
 import numpy as np
 
 import matplotlib.pyplot as plt
-import tensorflow as tf
-
 from skimage.transform import resize
 
-from tensorflow.keras.models import load_model
-from tensorflow.keras import backend as K
+import tensorflow as tf
+from keras import backend as K
 
 import logging
 
 
 tf.get_logger().setLevel(logging.ERROR)
 
+NIFTI = 'nifti'
+DICOM = 'dicom'
+DICOM2D = 'dicom-2D'
+MULTIDICOM = 'multi-dicom'
 
 def normalize_data_keras(imgslc):
     """
@@ -63,7 +65,7 @@ def run_cnn(params):
         data_dir = glob.glob(os.path.join(params.data_path, '*'))
         data_dir.sort()
 
-        if params.data_type != 'multi-dicom' and params.data_type != 'dicom-2D':
+        if params.data_type != MULTIDICOM and params.data_type != DICOM2D:
             if os.path.isdir(data_dir[0]):
                 print('Check the data path')
         elif not os.path.isdir(data_dir[0]):
@@ -74,7 +76,7 @@ def run_cnn(params):
             # Start timer
             timestart = time.time()
 
-            if params.data_type == 'dicom-2D':
+            if params.data_type == DICOM2D:
 
                 try:
                     path = os.path.join(nsub, '*.dcm')
@@ -120,7 +122,8 @@ def run_cnn(params):
                     print(' File not found: ', nsub)
                     continue
 
-            name = nsub.split('/')[-1]
+            name = os.path.basename(nsub).split('.')[0]
+            fig_path = './output_files/images/'
             pred = []
 
             if params.save_slice:
@@ -143,21 +146,25 @@ def run_cnn(params):
 
                         pred += [pred1]
 
-                        if params.save_slice:
+                        try:
 
-                            arg_min = np.argmin(pred1[:, 1])
-                            arg_max = np.argmax(pred1[:, 1])
+                            if params.save_slice == True:
 
-                            if pred1[arg_min, 1] < pred_min:
-                                pred_min = pred1[arg_min, 1]
-                                plt.imshow(data[arg_min, :, :, 1], cmap='gray')
-                                plt.title(pred_min)
-                                plt.savefig('min_' + name + '.png')
-                            if pred1[arg_max, 1] > pred_max:
-                                pred_max = pred1[arg_max, 1]
-                                plt.imshow(data[arg_max, :, :, 1], cmap='gray')
-                                plt.title(pred_max)
-                                plt.savefig('max_' + name + '.png')
+                                arg_min = np.argmin(pred1[:, 1])
+                                arg_max = np.argmax(pred1[:, 1])
+
+                                if pred1[arg_min, 1] < pred_min:
+                                    pred_min = pred1[arg_min, 1]
+                                    plt.imshow(data[arg_min, :, :, 1], cmap='gray')
+                                    plt.title('minimum prediction value ' + str(pred_min))
+                                    plt.savefig(fig_path+'min_' + str(name) + '.png')
+                                if pred1[arg_max, 1] > pred_max:
+                                    pred_max = pred1[arg_max, 1]
+                                    plt.imshow(data[arg_max, :, :, 1], cmap='gray')
+                                    plt.title('maximum prediction value ' + str(pred_max))
+                                    plt.savefig(fig_path+'max_' + name + '.png')
+                        except:
+                            print('Could not save the image')
 
                 except:
                     print('Model not found')
@@ -181,9 +188,12 @@ def run_cnn(params):
                 print('Time: ', time.time() - timestart)
 
     # save results
-    if params.display:
-        print(np.vstack(f_pred))
-    np.savetxt(params.save_file, np.vstack(f_pred), delimiter=',', fmt='%s')
+    if len(f_pred) == 0 :
+        print('Prediction failed')
+    else:
+        if params.display:
+            print(np.vstack(f_pred))
+        np.savetxt('./output_files/'+params.save_file, np.vstack(f_pred), delimiter=',', fmt='%s')
 
     return
 
@@ -196,26 +206,24 @@ def read_dataset(params, nsub):
     @return: acquisition slices
     """
 
-    if params.data_type == 'multi-dicom':
+    if params.data_type == MULTIDICOM:
         path = os.path.join(nsub, '*.dcm')
         origs = glob.glob(path)
         origs.sort()
         nsub = origs[0]
 
     if os.path.isfile(nsub):
-
-        if params.data_type == 'nifti':
+        if params.data_type == NIFTI:
             # read data when nifti files
             data = nib.load(nsub)
             data_img = data.get_fdata()
-
             pixdim = data.header['pixdim']
             h, l, w = data_img.shape
             image = resize(data_img, (int(h * pixdim[1]), int(l * pixdim[2]), int(w * pixdim[3])))
 
             img3 = (np.rot90(np.rot90(image, k=2, axes=(1, 0)), k=1, axes=(0, 2))).astype('float64')
 
-        elif params.data_type == 'multi-dicom':
+        elif params.data_type == MULTIDICOM:
             orig = pydicom.dcmread(origs[0])
 
             pat_position = orig[(0x0018, 0x5100)].value
@@ -266,7 +274,7 @@ def read_dataset(params, nsub):
                 del (orig, origs, img1)
                 gc.collect()
 
-        elif params.data_type == 'dicom':
+        elif params.data_type == DICOM:
             # read dcm file
             orig = pydicom.dcmread(nsub)
             img3 = orig.pixel_array.astype(np.float32)
@@ -329,9 +337,8 @@ def my_model(params, f1):
     @return: cnn model
     """
 
-    model_name = params.model_path + "MoCIDet_f" + str(f1) + ".h5"
-
-    model = load_model(model_name)
+    model_name = params.model_path + 'MoCIDet_f' + str(f1) + '.h5'
+    model = tf.keras.models.load_model(model_name)
 
     return model
 
@@ -353,8 +360,8 @@ parser.add_argument('-model_path',
                     default='./models/',
                     help='path to directory containing models')
 
-parser.add_argument('-data_type', type=str, default='dicom',
-                    help='type of data: nifti, dicom, multi-dicom,dicom-2D')
+parser.add_argument('-data_type', type=str, default=DICOM,
+                    choices= [NIFTI, DICOM, MULTIDICOM, DICOM2D])
 
 parser.add_argument('-save_slice',
                     action="store_true",
