@@ -64,19 +64,32 @@ Time:  8.439939022064209
 ```
 
 Slices saved:
-### ABIDE_50002_MRI_MP-RAGE_br_raw_20120830172854796_S164623_I328631
+### ABIDE_50002_MRI_MP-RAGE_br_raw_20120830172854796_S164623_I328631.nii
 <div style="display: flex; flex-direction: row;">
   <img width="45%" alt="Minimum value predicted slice" src="./output_files/images/min_ABIDE_50002_MRI_MP-RAGE_br_raw_20120830172854796_S164623_I328631.png" />
   <img width="45%" alt="Maximum value predicted slice" src="./output_files/images/max_ABIDE_50002_MRI_MP-RAGE_br_raw_20120830172854796_S164623_I328631.png" />
 </div>
 
-## ABIDE_50003_MRI_MP-RAGE_br_raw_20120830155445855_S164416_I328410
-![Minimum prediction slice](./output_files/images/min_ABIDE_50003_MRI_MP-RAGE_br_raw_20120830155445855_S164416_I328410.png) {: style="height:83px"} 
-![Maximum prediction slice](./output_files/images/max_ABIDE_50003_MRI_MP-RAGE_br_raw_20120830155445855_S164416_I328410.png) {: style="height:83px"}
+## ABIDE_50003_MRI_MP-RAGE_br_raw_20120830155445855_S164416_I328410.nii
 <p float=left>
-  <img width="45%"  src="./output_files/images/min_ABIDE_50002_MRI_MP-RAGE_br_raw_20120830172854796_S164623_I328631.png" />
-  <img width="45%"  src="./output_files/images/max_ABIDE_50002_MRI_MP-RAGE_br_raw_20120830172854796_S164623_I328631.png" />
+  <img width="45%"  src="./output_files/images/min_ABIDE_50003_MRI_MP-RAGE_br_raw_20120830155445855_S164416_I328410.png" />
+  <img width="45%"  src="./output_files/images/max_ABIDE_50003_MRI_MP-RAGE_br_raw_20120830155445855_S164416_I328410.png" />
 </p>
+
+## sub-10159_T1w.nii.gz
+<p float=left>
+  <img width="45%"  src="./output_files/images/min_sub-10159_T1w.png" />
+  <img width="45%"  src="./output_files/images/max_sub-10159_T1w.png" />
+</p>
+
+## sub-10206_T1w.nii.gz
+<p float=left>
+  <img width="45%"  src="./output_files/images/min_sub-10206_T1w.png" />
+  <img width="45%"  src="./output_files/images/max_sub-10206_T1w.png" />
+</p>
+
+
+
 
 If you find this repository useful, please consider giving a star ⭐ and citation 🦖:
 ```bash
