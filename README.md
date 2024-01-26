@@ -65,7 +65,7 @@ Time:  8.439939022064209
 
 Slices saved:
 ### ABIDE_50002_MRI_MP-RAGE_br_raw_20120830172854796_S164623_I328631
-<div style="display: flex; flex-direction: row;">>
+<div style="display: flex; flex-direction: row;">
   <img width="50%" alt="Minimum value predicted slice" src="./output_files/images/min_ABIDE_50002_MRI_MP-RAGE_br_raw_20120830172854796_S164623_I328631.png" />
   <img width="50%" alt="Maximum value predicted slice" src="./output_files/images/max_ABIDE_50002_MRI_MP-RAGE_br_raw_20120830172854796_S164623_I328631.png" />
 </div>
