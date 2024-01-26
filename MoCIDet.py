@@ -156,12 +156,12 @@ def run_cnn(params):
                                 if pred1[arg_min, 1] < pred_min:
                                     pred_min = pred1[arg_min, 1]
                                     plt.imshow(data[arg_min, :, :, 1], cmap='gray')
-                                    plt.title('minimum prediction value ' + str(pred_min))
+                                    plt.title('minimum predicted value ' + str(pred_min))
                                     plt.savefig(fig_path+'min_' + str(name) + '.png')
                                 if pred1[arg_max, 1] > pred_max:
                                     pred_max = pred1[arg_max, 1]
                                     plt.imshow(data[arg_max, :, :, 1], cmap='gray')
-                                    plt.title('maximum prediction value ' + str(pred_max))
+                                    plt.title('maximum predicted value ' + str(pred_max))
                                     plt.savefig(fig_path+'max_' + name + '.png')
                         except:
                             print('Could not save the image')

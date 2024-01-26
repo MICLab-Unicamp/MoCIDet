@@ -47,7 +47,7 @@ python3 MoCIDet.py -data_path path/to/folder/containing/volumes -data_type 'imag
 ```bash
 python MoCIDet.py -data_path test_anon/nifti/ -data_type nifti -save_file test_nifti.txt -display -save_slice
 ```
-
+```bash
 test_anon/nifti/ABIDE_50002_MRI_MP-RAGE_br_raw_20120830172854796_S164623_I328631.nii 1.0
 Time:  8.021493673324585
 test_anon/nifti/ABIDE_50003_MRI_MP-RAGE_br_raw_20120830155445855_S164416_I328410.nii 1.0
@@ -61,14 +61,14 @@ Time:  8.439939022064209
 ['test_anon/nifti/ABIDE_50003_MRI_MP-RAGE_br_raw_20120830155445855_S164416_I328410.nii' '1.0']
 ['test_anon/nifti/sub-10159_T1w.nii.gz' '1.0']
 ['test_anon/nifti/sub-10206_T1w.nii.gz' '0.05185185185185185']]
-
+```
 
 Slices saved:
+ # ABIDE_50002_MRI_MP-RAGE_br_raw_20120830172854796_S164623_I328631
+![Minimum prediction slice](./output_files/images/min_ABIDE_50002_MRI_MP-RAGE_br_raw_20120830172854796_S164623_I328631.png) | ![Maximum prediction slice](./output_files/images/max_ABIDE_50002_MRI_MP-RAGE_br_raw_20120830172854796_S164623_I328631.png)
 
-![Minimum prediction slice](./output_files/images/min_ABIDE_50002_MRI_MP-RAGE_br_raw_20120830172854796_S164623_I328631.png)
-![Maximum prediction slice](./output_files/images/max_ABIDE_50002_MRI_MP-RAGE_br_raw_20120830172854796_S164623_I328631.png)
-![Minimum prediction slice](./output_files/images/min_ABIDE_50003_MRI_MP-RAGE_br_raw_20120830155445855_S164416_I328410.png)
-![Maximum prediction slice](./output_files/images/max_ABIDE_50003_MRI_MP-RAGE_br_raw_20120830155445855_S164416_I328410.png)
+# ABIDE_50003_MRI_MP-RAGE_br_raw_20120830155445855_S164416_I328410
+![Minimum prediction slice](./output_files/images/min_ABIDE_50003_MRI_MP-RAGE_br_raw_20120830155445855_S164416_I328410.png) | ![Maximum prediction slice](./output_files/images/max_ABIDE_50003_MRI_MP-RAGE_br_raw_20120830155445855_S164416_I328410.png)
 
 If you find this repository useful, please consider giving a star ⭐ and citation 🦖:
 ```bash
