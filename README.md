@@ -66,13 +66,13 @@ Time:  8.439939022064209
 Slices saved:
 ### ABIDE_50002_MRI_MP-RAGE_br_raw_20120830172854796_S164623_I328631
 <div align="center">
-  <img width="50%" alt="Minimum value predicted slice" src="./output_files/images/min_ABIDE_50002_MRI_MP-RAGE_br_raw_20120830172854796_S164623_I328631.png">
+  <img width="50%" alt="Minimum value predicted slice" src="./output_files/images/min_ABIDE_50002_MRI_MP-RAGE_br_raw_20120830172854796_S164623_I328631.png"> \
   <img width="50%" alt="Maximum value predicted slice" src="./output_files/images/max_ABIDE_50002_MRI_MP-RAGE_br_raw_20120830172854796_S164623_I328631.png">
 </div>
-| ![Minimum prediction slice](./output_files/images/min_ABIDE_50002_MRI_MP-RAGE_br_raw_20120830172854796_S164623_I328631.png) | ![Maximum prediction slice](./output_files/images/max_ABIDE_50002_MRI_MP-RAGE_br_raw_20120830172854796_S164623_I328631.png) |
 
 ## ABIDE_50003_MRI_MP-RAGE_br_raw_20120830155445855_S164416_I328410
-| ![Minimum prediction slice](./output_files/images/min_ABIDE_50003_MRI_MP-RAGE_br_raw_20120830155445855_S164416_I328410.png) | ![Maximum prediction slice](./output_files/images/max_ABIDE_50003_MRI_MP-RAGE_br_raw_20120830155445855_S164416_I328410.png) |
+![Minimum prediction slice](./output_files/images/min_ABIDE_50003_MRI_MP-RAGE_br_raw_20120830155445855_S164416_I328410.png) {: style="height:83px"} 
+![Maximum prediction slice](./output_files/images/max_ABIDE_50003_MRI_MP-RAGE_br_raw_20120830155445855_S164416_I328410.png) {: style="height:83px"}
 
 If you find this repository useful, please consider giving a star ⭐ and citation 🦖:
 ```bash
